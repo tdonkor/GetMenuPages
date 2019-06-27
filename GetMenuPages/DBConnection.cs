@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GetMenuPages
 {
@@ -138,14 +136,16 @@ namespace GetMenuPages
 
         }
 
+        /// <summary>
+        /// Output the Payload data into a file for the importer
+        /// </summary>
+        /// <param name="con"></param>
         public static void OutputXMLPayload(SqlConnection con)
         {
             string path = ConfigurationManager.AppSettings["path"];
             SqlCommand com = con.CreateCommand();
             com.CommandType = CommandType.Text;
-            // com.Parameters.Add("RefInt", SqlDbType.VarChar).Value = RefInt;
-
-
+    
             string xmlPayloadData = string.Empty;
             string tableName = ConfigurationManager.AppSettings["tableName"];
 
@@ -155,9 +155,8 @@ namespace GetMenuPages
 
             //write the data to a string overwrite it if it is already there
 
-            Log.Info($"Write the StoreDataXML file");
+            Log.Info($"Create the Store_Level_Product.XML file");
             File.WriteAllText(path, xmlPayloadData);
-
         }
 
     }

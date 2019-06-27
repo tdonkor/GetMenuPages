@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GetMenuPages
 {
@@ -19,6 +16,12 @@ namespace GetMenuPages
         {
             dbConnection = new DBConnection();
         }
+
+        /// <summary>
+        /// Get the menu Pages information  and the Header information 
+        /// From the config file
+        /// </summary>
+        /// <param name="guid"></param>
         public void GetMenuPagesInformation(string guid)
         {
 
@@ -41,7 +44,7 @@ namespace GetMenuPages
 
             //execute the venue body
             request.AddParameter("request", getMenusBodyStr);
-            Log.Info($"Execute the getmenupages request");
+            Log.Info($"Execute the GetMenuPages request");
 
             //generate the response
             IRestResponse response = client.Execute(request);
@@ -54,7 +57,6 @@ namespace GetMenuPages
             menuStr = menuStr.Remove(0, 1); // remove " from beginning 
 
             dbConnection.CallStoredProcs(menuStr, guid);
-
 
         }
 

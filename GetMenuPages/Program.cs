@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GetMenuPages
 {
@@ -12,19 +9,28 @@ namespace GetMenuPages
         {
             try
             {
-                Console.WriteLine();
+                Console.WriteLine("GetMenuPages started.....");
+
                 Log.Info("\nMenu Pages Started.");
                 GetMenuPages menuPages = new GetMenuPages();
+
 
                 var guid = Guid.NewGuid().ToString();
                 Log.Info($"Guid Value set at : {guid}");
 
                 menuPages.GetMenuPagesInformation(guid);
                 Log.Info("Menu Pages Finished.\n");
+
+                Console.WriteLine("GetMenuPages Finished.....");
+
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error in GetMenuPages see Logs.");
+
                 Log.Error("Error" + ex);
+
+                Console.ReadKey();
             }
 
         }
